@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { AccountControllers } from "./Account.Controller";
+import { validateRequest } from "../../middlewares/ValidateRequest";
+import { createAccountSchema, getAccountByIdSchema, updateAccountSchema } from "./Account.Validation";
 const router = Router();
 
 
@@ -7,13 +9,13 @@ const router = Router();
 router.get('/', AccountControllers.getAllAccounts);
 
 // Get account by ID
-router.get('/:id', AccountControllers.getAccountById);
+router.get('/:id', validateRequest(getAccountByIdSchema), AccountControllers.getAccountById);
 
 // Create new account
-router.post('/', AccountControllers.createAccount);
+router.post('/', validateRequest(createAccountSchema), AccountControllers.createAccount);
 
 // Update account
-router.put('/:id', AccountControllers.updateAccount);
+router.put('/:id', validateRequest(updateAccountSchema), AccountControllers.updateAccount);
 
 // Delete account
 router.delete('/:id', AccountControllers.deleteAccount);
