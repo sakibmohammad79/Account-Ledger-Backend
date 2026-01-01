@@ -145,5 +145,6 @@ export const AccountServices = {
     getAccountsByIdFromDB,
     updateAccountIntoDB,
     softDeleteAccountFromDB,
+    deleteAccountFromDB,
     getAccountByTypeFromDB
 }
