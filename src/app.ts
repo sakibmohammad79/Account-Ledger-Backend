@@ -9,8 +9,6 @@ import cookieParser from "cookie-parser";
 import { config } from './app/config';
 // import router from './routes';
 // import { apiNotFoundHandler } from './app/middlewares/apiNotFoundHandler';
-
-// import router from './routes';
 // import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
 
 
