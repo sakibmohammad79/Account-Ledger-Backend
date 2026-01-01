@@ -7,9 +7,10 @@ import dotenv from 'dotenv';
 import compression from 'compression';
 import cookieParser from "cookie-parser";
 import { config } from './app/config';
-// import router from './routes';
-// import { apiNotFoundHandler } from './app/middlewares/apiNotFoundHandler';
-// import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
+import router from './routes';
+import { apiNotFoundHandler } from './app/middlewares/ApiNotFoundHandler';
+import { globalErrorHandler } from './app/middlewares/GlobalErrorHandler';
+
 
 
 
@@ -80,12 +81,12 @@ app.get('/', (_req: Request, res: Response) => {
 });
 
 // Application routes
-// app.use('/api/v1', router);
+app.use('/api/v1', router);
 
 // 404 Handler
-// app.use(apiNotFoundHandler);
+app.use(apiNotFoundHandler);
 
-// // Global error handler
-// app.use(globalErrorHandler);
+// Global error handler
+app.use(globalErrorHandler);
 
 export default app;

@@ -4,7 +4,7 @@ import { catchAsync } from '../../utils/CatchAsync';
 import { sendResponse } from '../../utils/SendResponse';
 import { AccountServices } from './Account.Service';
 
-export const getAllAccounts = catchAsync(async (_req: Request, res: Response) => {
+const getAllAccounts = catchAsync(async (_req: Request, res: Response) => {
   const accounts = await AccountServices.getAllAccountsFromDB();
   
   sendResponse(res, {
@@ -17,7 +17,7 @@ export const getAllAccounts = catchAsync(async (_req: Request, res: Response) =>
 });
 
 
-export const getAccountById = catchAsync(async (req: Request, res: Response) => {
+ const getAccountById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const account = await AccountServices.getAccountsByIdFromDB(id);
 
@@ -30,7 +30,7 @@ export const getAccountById = catchAsync(async (req: Request, res: Response) => 
 });
 
 
-export const createAccount = catchAsync(async (req: Request, res: Response) => {
+ const createAccount = catchAsync(async (req: Request, res: Response) => {
   const account = await AccountServices.createAccountIntoDB(req.body);
 
   sendResponse(res, {
@@ -42,7 +42,7 @@ export const createAccount = catchAsync(async (req: Request, res: Response) => {
 });
 
 
-export const updateAccount = catchAsync(async (req: Request, res: Response) => {
+ const updateAccount = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const account = await AccountServices.updateAccountIntoDB(id, req.body);
 
@@ -55,7 +55,7 @@ export const updateAccount = catchAsync(async (req: Request, res: Response) => {
 });
 
 
-export const deleteAccount = catchAsync(async (req: Request, res: Response) => {
+ const deleteAccount = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const account = await AccountServices.deleteAccountFromDB(id); // hard delete
 
@@ -67,7 +67,7 @@ export const deleteAccount = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const softDeleteAccount = catchAsync(async (req: Request, res: Response) => {
+ const softDeleteAccount = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const account = await AccountServices.softDeleteAccountFromDB(id); // soft delete
 
@@ -79,7 +79,7 @@ export const softDeleteAccount = catchAsync(async (req: Request, res: Response) 
   });
 });
 
-export const getAccountsByType = catchAsync(async (req: Request, res: Response) => {
+ const getAccountsByType = catchAsync(async (req: Request, res: Response) => {
   const { type } = req.params;
   const accounts = await AccountServices.getAccountByTypeFromDB(type);
 
@@ -91,3 +91,14 @@ export const getAccountsByType = catchAsync(async (req: Request, res: Response) 
     count: accounts.length,
   });
 });
+
+
+export const AccountControllers = {
+    createAccount,
+    getAllAccounts,
+    getAccountById,
+    getAccountsByType,
+    updateAccount,
+    deleteAccount,
+    softDeleteAccount
+}
