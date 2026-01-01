@@ -1,14 +1,13 @@
+// This is your Prisma schema file
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
-
 // Chart of Accounts - Account Types
 enum AccountType {
   ASSET
@@ -57,11 +56,11 @@ model Account {
   category    AccountCategory
   description String?
   isActive    Boolean       @default(true)
-  isDeleted   Boolean       @default(false)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   
   entries     Entry[]
+  @@map("account")
 }
 
 // Transaction (Header)
@@ -77,6 +76,7 @@ model Transaction {
   updatedAt       DateTime        @updatedAt
   
   entries         Entry[]
+  @@map("transaction")
 }
 
 // Journal Entry (Line Items) - Double Entry System
@@ -95,4 +95,5 @@ model Entry {
   
   @@index([transactionId])
   @@index([accountId])
+  @@map("entry")
 }

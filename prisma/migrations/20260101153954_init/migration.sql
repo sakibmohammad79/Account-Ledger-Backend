@@ -8,7 +8,7 @@ CREATE TYPE "AccountCategory" AS ENUM ('CURRENT_ASSET', 'FIXED_ASSET', 'CURRENT_
 CREATE TYPE "TransactionType" AS ENUM ('SALES', 'PURCHASE', 'RECEIPT', 'PAYMENT', 'GENERAL');
 
 -- CreateTable
-CREATE TABLE "Account" (
+CREATE TABLE "account" (
     "id" TEXT NOT NULL,
     "code" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -19,11 +19,11 @@ CREATE TABLE "Account" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Transaction" (
+CREATE TABLE "transaction" (
     "id" TEXT NOT NULL,
     "transactionNo" TEXT NOT NULL,
     "type" "TransactionType" NOT NULL,
@@ -34,11 +34,11 @@ CREATE TABLE "Transaction" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "transaction_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Entry" (
+CREATE TABLE "entry" (
     "id" TEXT NOT NULL,
     "transactionId" TEXT NOT NULL,
     "accountId" TEXT NOT NULL,
@@ -48,23 +48,23 @@ CREATE TABLE "Entry" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Entry_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "entry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Account_code_key" ON "Account"("code");
+CREATE UNIQUE INDEX "account_code_key" ON "account"("code");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Transaction_transactionNo_key" ON "Transaction"("transactionNo");
+CREATE UNIQUE INDEX "transaction_transactionNo_key" ON "transaction"("transactionNo");
 
 -- CreateIndex
-CREATE INDEX "Entry_transactionId_idx" ON "Entry"("transactionId");
+CREATE INDEX "entry_transactionId_idx" ON "entry"("transactionId");
 
 -- CreateIndex
-CREATE INDEX "Entry_accountId_idx" ON "Entry"("accountId");
+CREATE INDEX "entry_accountId_idx" ON "entry"("accountId");
 
 -- AddForeignKey
-ALTER TABLE "Entry" ADD CONSTRAINT "Entry_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "Transaction"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "entry" ADD CONSTRAINT "entry_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "transaction"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Entry" ADD CONSTRAINT "Entry_accountId_fkey" FOREIGN KEY ("accountId") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "entry" ADD CONSTRAINT "entry_accountId_fkey" FOREIGN KEY ("accountId") REFERENCES "account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
