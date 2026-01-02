@@ -2,7 +2,7 @@ import prisma from "./Prisma";
 import { TransactionType } from "@prisma/client";
 
 // Generate unique transaction number
-const generateTransactionNo = async (type: TransactionType) => {
+export const generateTransactionNo = async (type: TransactionType) => {
   const prefix = {
     SALES: 'SL',
     PURCHASE: 'PC',
@@ -35,7 +35,7 @@ const generateTransactionNo = async (type: TransactionType) => {
 };
 
 // Format currency
-const formatCurrency = (amount: number, currency = 'BDT') => {
+export const formatCurrency = (amount: number, currency = 'BDT') => {
   return new Intl.NumberFormat('en-BD', {
     style: 'currency',
     currency: currency
@@ -43,7 +43,7 @@ const formatCurrency = (amount: number, currency = 'BDT') => {
 };
 
 // Format date
-const formatDate = (
+export const formatDate = (
   date: string | number | Date,  // safer typing
   format: 'short' | 'long' = 'short'
 ): string => {
@@ -63,8 +63,3 @@ const formatDate = (
   return new Intl.DateTimeFormat('en-BD', options).format(d);
 };
 
-export default {
-  generateTransactionNo,
-  formatCurrency,
-  formatDate
-};

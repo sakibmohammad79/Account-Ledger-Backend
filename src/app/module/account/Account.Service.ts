@@ -62,7 +62,6 @@ const updateAccountIntoDB = async(id: string, data: any) => {
 
      const account = await prisma.account.findUnique({ 
         where: { id,
-            isActive: true,
             isDeleted: false 
         } });
     

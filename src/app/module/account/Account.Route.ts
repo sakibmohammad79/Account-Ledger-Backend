@@ -11,18 +11,23 @@ router.get('/', AccountControllers.getAllAccounts);
 // Get account by ID
 router.get('/:id', validateRequest(getAccountByIdSchema), AccountControllers.getAccountById);
 
+// Get accounts by type
+router.get('/type/:type', AccountControllers.getAccountsByType);
+
 // Create new account
 router.post('/', validateRequest(createAccountSchema), AccountControllers.createAccount);
 
 // Update account
-router.put('/:id', validateRequest(updateAccountSchema), AccountControllers.updateAccount);
+router.patch('/:id', validateRequest(updateAccountSchema), AccountControllers.updateAccount);
+
+// soft delete
+router.delete('/soft/:id', AccountControllers.softDeleteAccount);
+
 
 // Delete account
 router.delete('/:id', AccountControllers.deleteAccount);
 
-router.delete('soft/:id', AccountControllers.deleteAccount);
 
-// Get accounts by type
-router.get('/type/:type', AccountControllers.getAccountsByType);
+
 
 export const AccountRoutes = router;
