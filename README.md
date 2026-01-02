@@ -51,34 +51,58 @@ yarn dev
 # Production mode
 yarn dev
 Server will run on: http://localhost:5000
+
+
 📚 API Documentation
 Health Check
-GET /api/health
-Accounts
-GET    /api/account               - Get all accounts
-GET    /api/account/:id           - Get account by ID
-POST   /api/account               - Create new account
-PUT    /api/account/:id           - Update account
-DELETE /api/account/:id           - Delete account
-SOFT DELETE /api/account/soft/:id - Delete account
-GET    /api/account/type/:type    - Get accounts by type
-Transactions
-GET    /api/transaction                        - Get all transactions
-GET    /api/transaction/:id                    - Get transaction by ID
-POST   /api/transaction                        - Create new transaction
-PUT    /api/transaction/:id                    - Update transaction
-DELETE /api/transaction/:id                    - Delete transaction
-GET    /api/transaction/type/:type             - Get by type
-GET    /api/transaction/date-range/:start/:end - Get by date range
-Reports
-GET /api/report/journal           - Journal Report
-GET /api/report/balance-sheet     - Balance Sheet
-GET /api/report/income-statement  - Income Statement (P&L)
-GET /api/report/trial-balance     - Trial Balance
-GET /api/report/ledger/:accountId - Account Ledger
+
+GET/api/health
+
+Accounts Endpoints
+
+GET/api/account              → Get all accounts
+GET/api/account/:id          → Get account by ID
+POST/api/account              → Create new account
+PUT/api/account/:id          → Update account
+DELETE/api/account/:id          → Hard delete account
+DELETE/api/account/soft/:id     → Soft delete account
+GET/api/account/type/:type   → Get accounts by type (e.g., ASSET)
+
+Transactions Endpoints
+
+GET/api/transaction                        → Get all transactions
+
+GET/api/transaction/:id                    → Get transaction by ID
+
+POST/api/transaction                        → Create new transaction
+
+PUT/api/transaction/:id                    → Update transaction
+
+DELETE/api/transaction/:id                    → Delete transaction
+
+GET/api/transaction/type/:type             → Get transactions by type
+
+GET/api/transaction/date-range/:start/:end → Get transactions by date range
+
+
+Reports Endpoints
+
+GET/api/report/journal          → Journal Report
+
+GET/api/report/balance-sheet    → Balance Sheet (optional query: ?asOfDate=YYYY-MM-DD)
+
+GET/api/report/income-statement → Income Statement (P&L) (queries: ?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD)
+
+GET/api/report/trial-balance    → Trial Balance
+
+GET/api/report/ledger/:accountId → Account Ledger
+
+
 📝 Sample API Requests
+
 Create Account
 POST /api/accounts
+
 Content-Type: application/json
 
 {
@@ -88,6 +112,7 @@ Content-Type: application/json
   "category": "CURRENT_ASSET",
   "description": "Cash in hand"
 }
+
 Create Transaction
 POST /api/transactions
 Content-Type: application/json
