@@ -6,7 +6,7 @@ const toNumber = (value: any): number => Number(value || 0);
 /* =========================
    Journal Report
 ========================= */
-export const getJournalReport = async (options: {
+ const getJournalReport = async (options: {
   startDate?: string | Date;
   endDate?: string | Date;
   page?: number;
@@ -42,7 +42,7 @@ export const getJournalReport = async (options: {
 /* =========================
    Balance Sheet
 ========================= */
-export const getBalanceSheet = async (asOfDate?: string | Date) => {
+ const getBalanceSheet = async (asOfDate?: string | Date) => {
   const date = asOfDate ? new Date(asOfDate) : new Date();
 
   const entries = await prisma.entry.findMany({
@@ -107,7 +107,7 @@ export const getBalanceSheet = async (asOfDate?: string | Date) => {
 /* =========================
    Income Statement
 ========================= */
-export const getIncomeStatement = async (startDate?: string | Date, endDate?: string | Date) => {
+ const getIncomeStatement = async (startDate?: string | Date, endDate?: string | Date) => {
   const start = startDate ? new Date(startDate) : new Date(new Date().getFullYear(), 0, 1);
   const end = endDate ? new Date(endDate) : new Date();
 
@@ -164,7 +164,7 @@ export const getIncomeStatement = async (startDate?: string | Date, endDate?: st
 /* =========================
    Trial Balance
 ========================= */
-export const getTrialBalance = async (asOfDate?: string | Date) => {
+ const getTrialBalance = async (asOfDate?: string | Date) => {
   const date = asOfDate ? new Date(asOfDate) : new Date();
 
   const entries = await prisma.entry.findMany({
@@ -207,7 +207,7 @@ export const getTrialBalance = async (asOfDate?: string | Date) => {
 /* =========================
    Account Ledger
 ========================= */
-export const getAccountLedger = async (options: {
+ const getAccountLedger = async (options: {
   accountId: string;
   startDate?: string | Date;
   endDate?: string | Date;
@@ -248,3 +248,12 @@ export const getAccountLedger = async (options: {
     pagination: { total, page, pages: Math.ceil(total / limit), limit },
   };
 };
+
+
+export const ReportServices = {
+  getJournalReport,
+  getBalanceSheet,
+  getIncomeStatement,
+  getTrialBalance,
+  getAccountLedger,
+}
