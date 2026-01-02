@@ -12,7 +12,9 @@ const getAllAccounts = catchAsync(async (_req: Request, res: Response) => {
     success: true,
     message: 'Accounts retrieved successfully',
     data: accounts,
-    count: accounts.length,
+    meta: {
+      total: accounts.length,
+    }
   });
 });
 
@@ -88,7 +90,9 @@ const getAllAccounts = catchAsync(async (_req: Request, res: Response) => {
     success: true,
     message: 'Accounts retrieved successfully by type',
     data: accounts,
-    count: accounts.length,
+    meta:{
+      total: accounts.length
+    }
   });
 });
 

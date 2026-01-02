@@ -11,7 +11,7 @@ interface ResponseData<T = any> {
     total?: number;
     totalPages?: number;
   };
-  count?: number;
+
   errorMessages?: any;
 }
 
@@ -23,6 +23,6 @@ export const sendResponse = <T>(res: Response, data: ResponseData<T>) => {
     data: data.data || null,
     meta: data.meta || null,
     errorMessages: data.errorMessages || null,
-    count: data.count || null,
+  
   });
 };

@@ -40,7 +40,9 @@ import { catchAsync } from '../../utils/CatchAsync';
       success: true,
       message: 'Transactions retrieved successfully',
       data: result.data,
-      count: result.pagination.total,
+      meta: {
+        total : result.pagination.total,
+      }
     });
   }
 );
@@ -100,7 +102,9 @@ import { catchAsync } from '../../utils/CatchAsync';
       success: true,
       message: 'Transactions retrieved successfully by type',
       data: transactions,
-      count: transactions.length,
+      meta: {
+        total :transactions.length,
+      }
     });
   }
 );
@@ -116,7 +120,9 @@ import { catchAsync } from '../../utils/CatchAsync';
       success: true,
       message: 'Transactions retrieved successfully by date range',
       data: transactions,
-      count: transactions.length,
+      meta: {
+        total :transactions.length,
+      }
     });
   }
 );
