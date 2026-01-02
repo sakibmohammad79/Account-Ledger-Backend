@@ -2,14 +2,7 @@ import { Request, Response } from "express";
 import { catchAsync } from "../../utils/CatchAsync";
 import { sendResponse } from "../../utils/SendResponse";
 import { ReportServices } from "./Report.Service";
-
-/* Helper to get single string from query */
-const parseQueryParam = (value: any): string | undefined => {
-  if (!value) return undefined;
-  if (Array.isArray(value)) return value[0];
-  if (typeof value === "string") return value;
-  return undefined;
-};
+import { parseQueryParam } from "../../utils/ParseSingleString";
 
 
 /* =========================
