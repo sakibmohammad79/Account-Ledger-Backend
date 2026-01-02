@@ -20,4 +20,4 @@ router.get('/trial-balance', validateRequest(trialBalanceQuerySchema), ReportCon
 // Account Ledger
 router.get('/ledger/:accountId', validateRequest(accountLedgerSchema), ReportControllers.getAccountLedger);
 
-module.exports = router;
+export const ReportRoutes = router;
